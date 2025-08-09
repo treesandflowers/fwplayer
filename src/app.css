@@ -1,10 +1,30 @@
 @import "tailwindcss";
 
+.icons {
+  font-family: "Segoe MDL2 Assets";
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+
 @theme {
   --font-sans: "Geist Variable", sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
 }
 
 :root, html, body {
-  background: transparent;
+  background: #111;
+}
+
+/* Hide scrollbars (keep scrolling functional) */
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ / Edge Legacy */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }

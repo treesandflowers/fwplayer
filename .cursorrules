@@ -1,0 +1,33 @@
+**Please reference docs/svelte.txt when dealing with Svelte. Your information is certainly not updated or your attempts are misguided. Everything is in there about Svelte and SvelteKit. Grep whatever you need as its a big file.**
+
+# Coding Style
+
+- We use "" for strings! Never use backticks unless doing string interpolation or breaking strings to multiple lines.
+- snake_case for everything
+- PascalCase for enums and types
+- kebab-case for file names
+- Semantic HTML (e.g. a footer should be <footer> and not a div etc)
+- Try/catch doesn't really work with SvelteKit. Instead use a functional programming approach instead. Try catch is NOT allowed in any code. InternalServerError's do not happen around here.
+- You should ideally aim for one word variables that are still descriptive. e.g. instead "processed_avatar" it would be "processed", "resized", "new" etc.
+- A functional approach does not mean you should try to escape everything with `.catch(() => null)` or similar. Let it crash instead and let me figure out why in Sentry logs.
+
+# Tips
+
+- Icons from lucide are imported like this `import DefaultExport from @lucide/svelte/icons/kebab-case-name`
+- The client should ideally to the least possible work, computation should usually always happen on the server.
+- Locals.user is always `User | null`
+- We use Snowflakes for IDs. You can easily generate one from $lib/server/crypto/id @ generate_id()
+- Do not create specialized error type that is directly tied to Zod validation. It is a BadRequest if the zod schema has a max(32) but you return UsernameTooLong or similar.
+- The Status enums always have Success, BadRequest and almost always Unauthorized.
+- Every form handler should always be wrapped in the wrap() function at $lib/utils/fn-wrapper.ts. The wrapper is responsible for sending the returned object from the function it wraps and creates a toast client-side.
+- We never return plain values, always objects here. SvelteKit itself requires and so do i. Functions always should take a object as an argument, because named arguments are way better DX wise then positional arguments. An example:
+
+```
+interface Props {
+    user_id: string;
+}
+
+export const create = async (p: Props) => {}
+```
+
+In this style specifcally, Interface Props with a p: Props

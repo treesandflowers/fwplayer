@@ -56,7 +56,7 @@
 <svelte:window onpointermove={on_move} onpointerup={on_up} />
 
 <div
-  class="relative w-full h-1.5 rounded-full bg-neutral-300 cursor-pointer select-none"
+  class="relative w-full h-1.5 rounded-full bg-neutral-200 cursor-pointer select-none"
   bind:this={bar}
   onpointerdown={on_bar_down}
 >
@@ -67,7 +67,7 @@
 
   <button
     type="button"
-    class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-t from-rose-500 to-orange-500 ring ring-neutral-100 shadow"
+    class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 size-3 rounded-full bg-gradient-to-t from-rose-500 to-orange-500 ring ring-neutral-100 shadow"
     style="left: {progress}%;"
     onpointerdown={on_knob_down}
     aria-label="Seek"
